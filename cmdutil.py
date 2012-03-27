@@ -2,6 +2,7 @@
 
 import subprocess
 
+# Simple execute command utility class
 class CmdUtil():
     def __init__(self, cmdpath):
 	self.cmdpath = cmdpath
@@ -28,10 +29,10 @@ class CmdUtil():
 
     def printOut(self):
         for line in self.stdout:
-            print line
+            print "%s" % line, 
     def printErr(self):
         for line in self.stderr:
-            print line
+            print "%s" % line,
 
     def printStatus(self):
         print self.popen.returncode

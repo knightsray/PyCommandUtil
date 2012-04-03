@@ -18,7 +18,8 @@ class CmdUtil():
         self.popen = subprocess.Popen(self.cmdpath,          \
                                       stdin=subprocess.PIPE, \
                                       stdout=subprocess.PIPE,\
-                                      stderr=subprocess.PIPE)
+                                      stderr=subprocess.PIPE,\
+                                      close_fds=True)
         self.stdin = self.popen.stdin
         self.stdout = self.popen.stdout
         self.stderr = self.popen.stderr

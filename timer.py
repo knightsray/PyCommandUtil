@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-import threading, time
+import threading, os
 
 class Timer:
     def __init__(self, interval, function):
@@ -47,8 +47,8 @@ class Timer:
              return -1
 
 def func1():
-    print 'fire!!'
+    print os.get_loadavg()
 
 if __name__ == '__main__':
     timer = Timer(1, func1)
-    timer.run()
+    timer.periodic_run()

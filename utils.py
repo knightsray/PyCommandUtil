@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-import os, shutil, tarfile, pwd
+import os, shutil, tarfile, pwd, socket
 
 # Return True if specified argument is string
 def isString(string):
@@ -92,26 +92,31 @@ def findDir(dir_name, dir_path = pwd()):
                     list.append(path)
     return list 
 
+def hostname():
+    return socket.gethostname()
+
 class A:
 	def __init__(self):
 		a = True
 
 if __name__ == '__main__':
-	mkdir('hoge')
-	chdir('geho')
-	copy('foo', 'hoge')
-	isUpdated('chip', 'chop')
-	tarDir('test.py', 'bar')
+    mkDir('hoge')
+    chDir('geho')
+    copy('foo', 'hoge')
+    isUpdated('chip', 'chop')
+    tarDir('test.py', 'bar')
+    print hostname()
 
-	print 'start test'
-	a = 1
-	b = True
-	c = A()
-	d = 'h'
-	e = 'hogehoge'
-	for obj in a, b, c, d, e:
-		print isString(obj)
+    print 'start test'
+    a = 1
+    b = True
+    c = A()
+    d = 'h'
+    e = 'hogehoge'
+    for obj in a, b, c, d, e:
+        print isString(obj)
 
         findFile('Makefile')
         findDir('lib')
+
 

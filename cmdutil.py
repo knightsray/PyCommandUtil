@@ -19,26 +19,33 @@ class CmdUtil():
                                       stdin=subprocess.PIPE, \
                                       stdout=subprocess.PIPE,\
                                       stderr=subprocess.PIPE,\
-                                      close_fds=True, shell=True)
+                                      close_fds=True,        \
+                                      shell=True)
         self.stdin = self.popen.stdin
         self.stdout = self.popen.stdout
         self.stderr = self.popen.stderr
+
     def poll(self):
         self.popen.poll()
+
     def wait(self):
         self.popen.wait()
 
-    def printOut(self):
-        for line in self.stdout:
-            print "%s" % line, 
-    def printErr(self):
-        for line in self.stderr:
-            print "%s" % line,
+    def setIn(stdin):
+        self.stdin = stdin
+        
+    def getOut(self):
+        return self.stdout
 
-    def printStatus(self):
-        print self.popen.returncode
-    def printPid(self):
-        print self.popen.pid
+    def getErr(self):
+        return self.stdin
+
+    def getStatus(self):
+        return self.popen.returncode
+
+    def getPid(self):
+        return  self.popen.pid
+
     def isKilled(self):
         if self.popen.returncode < 0:
            return True
@@ -50,5 +57,6 @@ if __name__ == "__main__":
     ls = CmdUtil('ls')
     ls.run()
     ls.wait()
-    ls.printOut()
-    ls.printStatus()
+    for line in ls.getOut():
+        print line,
+    print ls.getStatus()

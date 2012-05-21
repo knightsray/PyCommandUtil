@@ -19,7 +19,7 @@ class CmdUtil():
                                       stdin=subprocess.PIPE, \
                                       stdout=subprocess.PIPE,\
                                       stderr=subprocess.PIPE,\
-                                      close_fds=True)
+                                      close_fds=True, shell=True)
         self.stdin = self.popen.stdin
         self.stdout = self.popen.stdout
         self.stderr = self.popen.stderr

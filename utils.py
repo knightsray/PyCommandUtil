@@ -2,8 +2,7 @@
 
 import os, shutil, tarfile, pwd
 
-
-# Check whether specified argument is string
+# Return True if specified argument is string
 def isString(string):
     return isinstance(string, basestring)
 
@@ -31,8 +30,19 @@ def chDir(path):
         return False
 
 def copy(srcPath, dstPath):
-    if isFile(srcPath) and isDir(dstPath):
+    if isFile(srcPath):
         shutil.copy2(srcPath, dstPath)
+        return True
+    elif isDir(srcPath):
+        if not os.path.exists(dstPath):
+            shutil.copytree(srcPath, dstPath)
+            return True
+            
+    return False
+
+def move(srcPath, dstPath):
+    if os.path.exist:
+        shutil.move(srcPath, dstPath)
         return True
     else:
         return False

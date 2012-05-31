@@ -1,18 +1,21 @@
-#!/usr/bin/python 
+#!/usr/bin/python
 
 import subprocess
 
+
 # Simple execute command utility class
 class CmdUtil():
+
     def __init__(self, cmdpath):
-	self.cmdpath = cmdpath
+        self.cmdpath = cmdpath
+
     def __del__(self):
         if self.stdin != None:
-           self.stdin.close()
+            self.stdin.close()
         if self.stdout != None:
-           self.stdout.close()
+            self.stdout.close()
         if self.stderr != None:
-           self.stderr.close()
+            self.stderr.close()
 
     def run(self):
         self.popen = subprocess.Popen(self.cmdpath,          \
@@ -33,7 +36,7 @@ class CmdUtil():
 
     def setIn(stdin):
         self.stdin = stdin
-        
+
     def getOut(self):
         return self.stdout
 
@@ -44,13 +47,13 @@ class CmdUtil():
         return self.popen.returncode
 
     def getPid(self):
-        return  self.popen.pid
+        return self.popen.pid
 
     def isKilled(self):
         if self.popen.returncode < 0:
-           return True
+            return True
         else:
-           return False
+            return False
 
 if __name__ == "__main__":
 

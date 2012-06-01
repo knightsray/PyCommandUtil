@@ -1,9 +1,11 @@
 #!/usr/bin/python
 
-import threading, os
+import threading
+import os
+
 
 class Timer:
-    def __init__(self, interval, function, argument = []):
+    def __init__(self, interval, function, argument=[]):
         self.interval = interval
         self.handler = function
         self.argument = argument
@@ -45,11 +47,12 @@ class Timer:
             return -1
 
     def stop_timer(self):
-         if self.status == 1:
-             self.keep_timer = False
-             return 0
-         else:
-             return -1
+        if self.status == 1:
+            self.keep_timer = False
+            return 0
+        else:
+            return -1
+
 
 def func1(arg1, arg2):
     print arg1, arg2

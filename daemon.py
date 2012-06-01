@@ -1,6 +1,8 @@
 #!/usr/bin/python
 
-import os, sys, time
+import os
+import sys
+import time
 
 # Simple daemon.
 
@@ -16,7 +18,7 @@ if __name__ == '__main__':
 
     if pid > 0:
         sys.exit(0)
-        
+
     # Create a new session.
     os.setsid()
 
@@ -33,7 +35,7 @@ if __name__ == '__main__':
 
     # Change current direcotry.
     os.chdir('/')
-  
+
     # Set umask.
     os.umask(0)
 

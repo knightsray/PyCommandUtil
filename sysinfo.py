@@ -2,6 +2,7 @@
 
 import re
 
+
 def getCpuModelName():
     prefix = re.compile('model\sname\s+:\s')
     sufix = re.compile('\n')
@@ -15,6 +16,7 @@ def getCpuModelName():
                 break
     return modelname
 
+
 def getCpuCoreNum():
     prefix = re.compile('cpu\scores\s+:\s')
     sufix = re.compile('\n')
@@ -27,6 +29,7 @@ def getCpuCoreNum():
                 corenum = int(sufix.sub('', strnum))
                 break
     return corenum
+
 
 def getMemTotal():
     prefix = re.compile('MemTotal:\s+')

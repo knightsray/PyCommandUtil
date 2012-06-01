@@ -1,26 +1,36 @@
 #!/usr/bin/python
 
-import os, shutil, tarfile, pwd, socket
+import os
+import shutil
+import tarfile
+import pwd
+import socket
+
 
 # Return True if specified argument is string
 def isString(string):
     return isinstance(string, basestring)
 
+
 def isFile(path):
     return os.path.isfile(path)
+
 
 def isDir(path):
     return os.path.isdir(path)
 
+
 def pwd():
     return os.getcwd()
 
+
 def mkDir(path):
-    if  isDir(path):
+    if isDir(path):
         return False
     else:
         os.mkdir(path)
         return True
+
 
 def chDir(path):
     if isDir(path):
@@ -28,6 +38,7 @@ def chDir(path):
         return True
     else:
         return False
+
 
 def copy(srcPath, dstPath):
     if isFile(srcPath):
@@ -37,8 +48,9 @@ def copy(srcPath, dstPath):
         if not os.path.exists(dstPath):
             shutil.copytree(srcPath, dstPath)
             return True
-            
+
     return False
+
 
 def move(srcPath, dstPath):
     if os.path.exist:
@@ -47,11 +59,13 @@ def move(srcPath, dstPath):
     else:
         return False
 
+
 def isUpdated(srcPath, dstPath):
     if isFile(srcPath) and isFile(dstPath):
         if os.path.getmtime(srcPath) > os.path.getmtime(dstPath):
             return True
     return False
+
 
 def tarDir(name, dirPath):
     tarName = str(name) + '.gz'
@@ -64,6 +78,7 @@ def tarDir(name, dirPath):
     else:
         return False
 
+
 def rmDirs(path):
     if isDir(dirPath):
         shutil.rmtree(path)
@@ -71,7 +86,8 @@ def rmDirs(path):
     else:
         return False
 
-def findFile(file_name, dir_path = pwd()):
+
+def findFile(file_name, dir_path=pwd()):
     list = []
     for dirpath, dirs, files in os.walk(dir_path):
         for file in files:
@@ -79,10 +95,10 @@ def findFile(file_name, dir_path = pwd()):
                 path = dirpath + '/' + file
                 if isFile(path):
                     list.append(path)
-    return list 
-            
+    return list
 
-def findDir(dir_name, dir_path = pwd()):
+
+def findDir(dir_name, dir_path=pwd()):
     list = []
     for dirpath, dirs, files in os.walk(dir_path):
         for dir in dirs:
@@ -90,14 +106,16 @@ def findDir(dir_name, dir_path = pwd()):
                 path = dirpath + '/' + dir
                 if isDir(path):
                     list.append(path)
-    return list 
+    return list
+
 
 def hostname():
     return socket.gethostname()
 
+
 class A:
-	def __init__(self):
-		a = True
+    def __init__(self):
+        a = True
 
 if __name__ == '__main__':
     mkDir('hoge')
@@ -118,5 +136,3 @@ if __name__ == '__main__':
 
         findFile('Makefile')
         findDir('lib')
-
-

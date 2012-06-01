@@ -113,6 +113,13 @@ def hostname():
     return socket.gethostname()
 
 
+def getFileSize(file):
+    if isFile(file):
+        return os.path.getsize(file)
+    else:
+        return -1
+
+
 class A:
     def __init__(self):
         a = True

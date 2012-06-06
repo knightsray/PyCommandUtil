@@ -5,6 +5,7 @@ import shutil
 import tarfile
 import pwd
 import socket
+import stat
 
 
 # Return True if specified argument is string
@@ -53,11 +54,28 @@ def copy(srcPath, dstPath):
 
 
 def move(srcPath, dstPath):
-    if os.path.exist:
+    if os.path.exist(srcPath):
         shutil.move(srcPath, dstPath)
         return True
     else:
         return False
+
+
+def chmod(path, mode):
+    if os.path.exist(path):
+        os.chmod(path, mode)
+        return True
+    else:
+        return False
+
+
+def checkMode(path, stmode):
+    if os.path.exist(path):
+        mode = oct(stat.S_IMODE(os.stat(path)[stat.ST_MODE]))
+        if mode == stmode:
+            return True
+
+    return False
 
 
 def isUpdated(srcPath, dstPath):

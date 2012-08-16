@@ -7,7 +7,7 @@ import subprocess
 class CmdUtil():
 
     def __init__(self, cmdpath):
-        self.cmdpath = cmdpath
+        self.cmdpath = cmdpath.split(' ')
 
     def __del__(self):
         if self.stdin != None:
@@ -23,10 +23,12 @@ class CmdUtil():
                                       stdout=subprocess.PIPE,\
                                       stderr=subprocess.PIPE,\
                                       close_fds=True,        \
-                                      shell=True)
+                                      shell=False)
         self.stdin = self.popen.stdin
         self.stdout = self.popen.stdout
         self.stderr = self.popen.stderr
+        self.output = ""
+        self.error = ""
 
     def poll(self):
         self.popen.poll()
@@ -38,10 +40,16 @@ class CmdUtil():
         self.stdin = stdin
 
     def getOut(self):
-        return self.stdout
+        if self.output == "":
+            for line in self.stdout:
+                self.output = self.output + line
+        return self.output
 
     def getErr(self):
-        return self.stdin
+        if self.error == "":
+            for line in self.stderr:
+                self.error = self.error + line
+        return self.error
 
     def getStatus(self):
         return self.popen.returncode
@@ -49,17 +57,13 @@ class CmdUtil():
     def getPid(self):
         return self.popen.pid
 
-    def isKilled(self):
-        if self.popen.returncode < 0:
-            return True
-        else:
-            return False
 
 if __name__ == "__main__":
 
     ls = CmdUtil('ls')
     ls.run()
     ls.wait()
-    for line in ls.getOut():
-        print line,
-    print ls.getStatus()
+    if ls.getStatus() == 0:
+        print ls.getOut(),
+    else:
+        print ls.getErr(),

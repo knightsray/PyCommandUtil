@@ -10,19 +10,19 @@ class CmdUtil():
         self.cmdpath = cmdpath.split(' ')
 
     def __del__(self):
-        if self.stdin != None:
+        if self.stdin is not None:
             self.stdin.close()
-        if self.stdout != None:
+        if self.stdout is not None:
             self.stdout.close()
-        if self.stderr != None:
+        if self.stderr is not None:
             self.stderr.close()
 
     def run(self):
-        self.popen = subprocess.Popen(self.cmdpath,          \
-                                      stdin=subprocess.PIPE, \
-                                      stdout=subprocess.PIPE,\
-                                      stderr=subprocess.PIPE,\
-                                      close_fds=True,        \
+        self.popen = subprocess.Popen(self.cmdpath,
+                                      stdin=subprocess.PIPE,
+                                      stdout=subprocess.PIPE,
+                                      stderr=subprocess.PIPE,
+                                      close_fds=True,
                                       shell=False)
         self.stdin = self.popen.stdin
         self.stdout = self.popen.stdout

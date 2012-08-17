@@ -20,7 +20,7 @@ def getCpuModelName():
 def getCpuCoreNum():
     prefix = re.compile('cpu\scores\s+:\s')
     sufix = re.compile('\n')
-    cpunum = 0
+    corenum = 0
 
     with open('/proc/cpuinfo') as file:
         for line in file:

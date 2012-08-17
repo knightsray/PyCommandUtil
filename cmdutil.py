@@ -36,7 +36,7 @@ class CmdUtil():
     def wait(self):
         self.popen.wait()
 
-    def setIn(stdin):
+    def setIn(self, stdin):
         self.stdin = stdin
 
     def getOut(self):

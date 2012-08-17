@@ -97,13 +97,13 @@ def AssertCmdAbnormal(cmd, expected, status=1):
 def LoopRun(cmdpath, filepath, count):
     cmd = Cmd(cmdpath)
 
-    with open(filepath, 'w') as file:
+    with open(filepath, 'w') as logfile:
         for i in xrange(count):
             cmd.run()
             if cmd.getStatus() == 0:
-                file.write(cmd.getOut())
+                logfile.write(cmd.getOut())
             else:
-                file.write(cmd.getErr())
+                logfile.write(cmd.getErr())
 
 
 if __name__ == '__main__':

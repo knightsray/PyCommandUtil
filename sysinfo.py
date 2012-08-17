@@ -8,8 +8,8 @@ def getCpuModelName():
     sufix = re.compile('\n')
     modelname = ''
 
-    with open('/proc/cpuinfo') as file:
-        for line in file:
+    with open('/proc/cpuinfo') as sysfile:
+        for line in sysfile:
             modelname = prefix.sub('', line)
             if line != modelname:
                 modelname = sufix.sub('', modelname)
@@ -22,8 +22,8 @@ def getCpuCoreNum():
     sufix = re.compile('\n')
     corenum = 0
 
-    with open('/proc/cpuinfo') as file:
-        for line in file:
+    with open('/proc/cpuinfo') as sysfile:
+        for line in sysfile:
             strnum = prefix.sub('', line)
             if line != strnum:
                 corenum = int(sufix.sub('', strnum))
@@ -36,8 +36,8 @@ def getMemTotal():
     sufix = re.compile('\skB\n')
     memtotal = 0
 
-    with open('/proc/meminfo') as file:
-        for line in file:
+    with open('/proc/meminfo') as sysfile:
+        for line in sysfile:
             memtotal = prefix.sub('', line)
             if line != memtotal:
                 memtotal = sufix.sub('', memtotal)

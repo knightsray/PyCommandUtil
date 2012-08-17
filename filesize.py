@@ -3,6 +3,6 @@
 import sys
 import os
 
-file = sys.argv[1]
-fsize = os.path.getsize(file)
+filepath = sys.argv[1]
+fsize = os.path.getsize(filepath)
 print fsize

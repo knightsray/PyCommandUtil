@@ -97,34 +97,34 @@ def tarDir(name, dirPath):
         return False
 
 
-def rmDirs(path):
+def rmDirs(dirPath):
     if isDir(dirPath):
-        shutil.rmtree(path)
+        shutil.rmtree(dirPath)
         return True
     else:
         return False
 
 
 def findFile(file_name, dir_path=pwd()):
-    list = []
+    file_list = []
     for dirpath, dirs, files in os.walk(dir_path):
-        for file in files:
-            if str(file_name) == str(file):
-                path = dirpath + '/' + file
-                if isFile(path):
-                    list.append(path)
-    return list
+        for target_file in files:
+            if str(file_name) == str(target_file):
+                file_path = dirpath + '/' + target_file
+                if isFile(file_path):
+                    file_list.append(file_path)
+    return file_list
 
 
 def findDir(dir_name, dir_path=pwd()):
-    list = []
+    dir_list = []
     for dirpath, dirs, files in os.walk(dir_path):
-        for dir in dirs:
-            if str(dir_name) == str(dir):
-                path = dirpath + '/' + dir
+        for target_dir in dirs:
+            if str(dir_name) == str(target_dir):
+                path = dirpath + '/' + target_dir
                 if isDir(path):
-                    list.append(path)
-    return list
+                    dir_list.append(path)
+    return dir_list
 
 
 def hostname():
@@ -140,7 +140,9 @@ def getFileSize(file):
 
 class A:
     def __init__(self):
-        a = True
+        self.a = True
+    def Print(self):
+        print self.a
 
 if __name__ == '__main__':
     mkDir('hoge')

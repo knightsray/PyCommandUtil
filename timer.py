@@ -1,7 +1,6 @@
 #!/usr/bin/python
 
 import threading
-import os
 
 
 class Timer:
@@ -58,6 +57,6 @@ def func1(arg1, arg2):
     print arg1, arg2
 
 if __name__ == '__main__':
-    list = ['arg1', 'arg2']
-    timer = Timer(1, func1, list)
+    arg_list = ['arg1', 'arg2']
+    timer = Timer(1, func1, arg_list)
     timer.periodic_run()

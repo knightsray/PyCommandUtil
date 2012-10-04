@@ -28,5 +28,11 @@ def process_killer(pid):
     signal_sender(pid, signal.SIGKILL)
 
 
-if __name__ == '__main__':
+def main():
+    if len(sys.argv) != 2:
+        print 'ERROR: Specified PID'
+        sys.exit(1)
+
     process_killer(sys.argv[1])
+if __name__ == '__main__':
+    main()

@@ -4,14 +4,14 @@ import os
 import sys
 import time
 
-# Simple daemon.
 
-if __name__ == '__main__':
+# Simple daemon.
+def daemonize(name):
 
     STDIN = 0
     STDOUT = 1
     STDERR = 2
-    pid_file_path = './daemon.pid'
+    pid_file_path = name + '.pid'
 
     # Create a child process.
     pid = os.fork()
@@ -29,9 +29,8 @@ if __name__ == '__main__':
         sys.exit(0)
 
     # Create pid file.
-    pid_file = open(pid_file_path, 'w')
-    pid_file.write(str(os.getpid()))
-    pid_file.close()
+    with open(pid_file_path, 'w') as pid_file:
+        pid_file.write(str(os.getpid()))
 
     # Change current direcotry.
     os.chdir('/')
@@ -48,4 +47,7 @@ if __name__ == '__main__':
     os.dup2(dev_null, STDOUT)
     os.dup2(dev_null, STDERR)
 
+
+if __name__ == '__main__':
+    daemonize('daemon')
     time.sleep(60)
